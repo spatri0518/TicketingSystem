@@ -1,7 +1,7 @@
 # TicketingSystem
 Ticketing Service Application is built using the Java technologies like Spring Framework with Jersey Rest Web Service.
 
-Application Scope:
+#Application Scope:
 
 1)	Find the number of seats available with optional parameter venue level.
 
