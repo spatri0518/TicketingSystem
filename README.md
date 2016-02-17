@@ -23,20 +23,22 @@ Pls. install the below listed software’s if not present.
 
        https://github.com/spatri0518/TicketingSystem
 
-2)	Extract the TicketingService.zip file to a folder.
+2)	Extract the TicketingService.zip file to a folder with name TicketingSystem.
+ 
+       Note: application name will be the folder name once deployed
 
 3)	Update the application log file path variable “logPath” in the below file 
 
-TicketingSystem\src\main\resources\TicketingService-log4j2.xml
+        TicketingSystem\src\main\resources\TicketingService-log4j2.xml
 
 4)	Open command prompt and cd to the project folder.
 
 5)	Use the below command to build and run the project
 
-     Gradle jettyRunWar
+        Gradle jettyRunWar
 
 6)	Should have downloaded the dependencies and executed the junit tests cases, generated war file, 
-deployed and started jetty server with the APP running .
+deployed and started jetty server with the APP running. We can notice the app URL in the console once started.
  
 #Note :
 
@@ -49,15 +51,15 @@ Also pls. note that the test cases status can be found in the below location
 
   API 1 – to find Seats Available
 
-    http://localhost:8080/ticketingSystem/rest/ticketing/numSeatsAvailable?venueLevel=2
+    http://localhost:8080/TicketingSystem/rest/ticketing/numSeatsAvailable?venueLevel=2
 
   API 2 – to find and hold Seats based on the availability and the level parameters
 
-    http://localhost:8080/ticketingSystem/rest/ticketing/findAndHoldSeats?numSeats=2&customerEmail=spatri@gmail.com&minLevel=2&maxLevel=2
+    http://localhost:8080/TicketingSystem/rest/ticketing/findAndHoldSeats?numSeats=2&customerEmail=spatri@gmail.com&minLevel=2&maxLevel=2
 
   API 3 – to reserve the tickets which are already hold.
 
-    http://localhost:8080/ticketingSystem/rest/ticketing/reserveSeats?seatHoldId=1636145645&customerEmail=spatri@gmail.com
+    http://localhost:8080/TicketingSystem/rest/ticketing/reserveSeats?seatHoldId=1636145645&customerEmail=spatri@gmail.com
 
  
 
