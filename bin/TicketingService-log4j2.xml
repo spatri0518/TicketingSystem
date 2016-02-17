@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Note that the status="error" attribute below at the "configuration" level does NOT set the ROOT logger's log level
+  to "error". It is the level of internal Log4j events that should be logged to the console.
+  The verbose="true" enables diagnostic information while loading plugins.
+
+  See [http://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax] for various
+  configuration attributes.
+-->
+<Configuration status="debug" strict="true" name="TicketingService" verbose="true" monitorInterval="5">
+
+   <Properties>
+      <!--Property(ies) set here can be referenced in further configuration below -->
+      <Property name="serviceName">TicketingService</Property>
+      <Property name="logPath">c:/logs</Property>
+   </Properties>
+
+   <Appenders>
+      <Appender type="Console" name="STDOUT">
+         <Layout type="PatternLayout"
+                 pattern="${serviceName} %X{hostName} %X{clientIp} %X{requestId} %p %d{yyyy-MM-dd'T'HH:mm:ssZ} %t [%c] %m%n"/>
+      </Appender>
+
+      <RollingFile name="File" fileName="${logPath}/${serviceName}.log"
+                   filePattern="${serviceName}-%i.log" bufferedIO="true" ignoreExceptions="false">
+         <Layout type="PatternLayout">
+            <Pattern>${serviceName} %X{hostName} %X{clientIp} %X{requestId} %p %d{yyyy-MM-dd'T'HH:mm:ssZ} %t [%c] %m%n
+            </Pattern>
+         </Layout>
+         <Policies>
+            <SizeBasedTriggeringPolicy size="10 MB"/>
+         </Policies>
+      </RollingFile>
+
+      <!--
+         The attribute ignoreExceptions below is NOT related to the exceptions being logged. It is about the internal
+         exception encountered during logging (e.g., the flume appender could not connect to flume etc).
+         See Log4J2 appenders documentation about various appender attribs at
+         [http://logging.apache.org/log4j/2.x/manual/appenders.html]
+         The attribute ignoreExceptions must be set to "false" when the appender is wrapped inside a Failover
+         appender.
+      -->
+      <Flume name="FlumeAvro" compress="false" ignoreExceptions="false">
+         <Agent host="localhost" port="4141"/>
+         <Layout type="PatternLayout"
+                 pattern="${serviceName} %p %d{yyyy-MM-dd'T'HH:mm:ssZ} %t [%c] %m%n"/>
+      </Flume>
+
+      <!--
+         A failover appender that will try to send events to flume first. If that fails (say flume is not running) for
+         some reason then it will log the events to file.
+      -->
+      <Failover name="Failover" primary="FlumeAvro">
+         <Failovers>
+            <AppenderRef ref="File"/>
+         </Failovers>
+      </Failover>
+   </Appenders>
+
+   <Loggers>
+      
+      <!--  Exception Mappers -->
+      <AsyncLogger name="com.walmart.ts.exception.mapper" level="debug" additivity="false">
+         <AppenderRef ref="File"/>
+      </AsyncLogger>
+      
+       <AsyncLogger name="com.walmart.ts" level="debug" additivity="false">
+         <AppenderRef ref="File"/>
+      </AsyncLogger>
+
+      <AsyncRoot level="debug">
+         <AppenderRef ref="File"/>
+      </AsyncRoot>
+   </Loggers>
+
+</Configuration>
