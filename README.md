@@ -13,8 +13,11 @@ Ticketing Service Application is built using the Java technologies like Spring F
 
 #Software Prerequisites:
 Pls. install the below listed software’s if not present.
+
 1)	Gradle 1.12
+
 2)	JDK 1.8
+
 #Build Process: 
 1)	Download the project from GIT using the below link
 
