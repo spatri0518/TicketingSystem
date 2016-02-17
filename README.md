@@ -40,7 +40,7 @@ deployed and started jetty server with the APP running .
 
 Also pls. note that the test cases status can be found in the below location
 
-    %PROJECT_FOLDER%//build/reports/tests/index.html as shown in the below screen shot.
+    %PROJECT_FOLDER%//build/reports/tests/index.html
  
 #Execution Steps:
 1)	Service can be tested using rest client or directly from the browser using the below links 
