@@ -21,6 +21,8 @@ Pls. install the below listed software’s if not present.
 #Build Process: 
 1)	Download the project from GIT using the below link
 
+       https://github.com/spatri0518/TicketingSystem
+
 2)	Extract the TicketingService.zip file to a folder.
 
 3)	Update the application log file path variable “logPath” in the below file 
