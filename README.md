@@ -36,26 +36,26 @@ TicketingSystem\src\main\resources\TicketingService-log4j2.xml
 6)	Should have downloaded the dependencies and executed the junit tests cases, generated war file, 
 deployed and started jetty server with the APP running .
  
-Note :
+#Note :
 
 Also pls. note that the test cases status can be found in the below location
 
-%PROJECT_FOLDER%//build/reports/tests/index.html as shown in the below screen shot.
+    %PROJECT_FOLDER%//build/reports/tests/index.html as shown in the below screen shot.
  
-Execution Steps:
+#Execution Steps:
 1)	Service can be tested using rest client or directly from the browser using the below links 
 
-API 1 – to find Seats Available
+  API 1 – to find Seats Available
 
-http://localhost:8080/ticketingSystem/rest/ticketing/numSeatsAvailable?venueLevel=2
+    http://localhost:8080/ticketingSystem/rest/ticketing/numSeatsAvailable?venueLevel=2
 
-API 2 – to find and hold Seats based on the availability and the level parameters
+  API 2 – to find and hold Seats based on the availability and the level parameters
 
-http://localhost:8080/ticketingSystem/rest/ticketing/findAndHoldSeats?numSeats=2&customerEmail=spatri@gmail.com&minLevel=2&maxLevel=2
+    http://localhost:8080/ticketingSystem/rest/ticketing/findAndHoldSeats?numSeats=2&customerEmail=spatri@gmail.com&minLevel=2&maxLevel=2
 
-API 3 – to reserve the tickets which are already hold.
+  API 3 – to reserve the tickets which are already hold.
 
-http://localhost:8080/ticketingSystem/rest/ticketing/reserveSeats?seatHoldId=1636145645&customerEmail=spatri@gmail.com
+    http://localhost:8080/ticketingSystem/rest/ticketing/reserveSeats?seatHoldId=1636145645&customerEmail=spatri@gmail.com
 
  
 
